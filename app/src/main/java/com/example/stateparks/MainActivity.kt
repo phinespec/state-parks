@@ -1,11 +1,16 @@
 package com.example.stateparks
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -30,18 +35,16 @@ class MainActivity : AppCompatActivity() {
         // Listen for clicks on menu items
         navView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.home -> Toast.makeText(applicationContext, "Home was clicked",
-                Toast.LENGTH_SHORT).show()
-                R.id.parks -> Toast.makeText(applicationContext, "Parks was clicked",
-                        Toast.LENGTH_SHORT).show()
-                R.id.activities -> Toast.makeText(applicationContext, "Activities was clicked",
-                        Toast.LENGTH_SHORT).show()
-                R.id.resources -> Toast.makeText(applicationContext, "Resources was clicked",
-                        Toast.LENGTH_SHORT).show()
-                R.id.map -> Toast.makeText(applicationContext, "Map was clicked",
-                        Toast.LENGTH_SHORT).show()
-                R.id.reserve -> Toast.makeText(applicationContext, "Reserve was clicked",
-                        Toast.LENGTH_SHORT).show()
+                R.id.parks -> Toast.makeText(this, "Parks was clicked",
+                        Toast.LENGTH_LONG).show()
+                R.id.activities -> Toast.makeText(this, "Activities was clicked",
+                        Toast.LENGTH_LONG).show()
+                R.id.resources -> Toast.makeText(this, "Resources was clicked",
+                        Toast.LENGTH_LONG).show()
+                R.id.map -> Toast.makeText(this, "Map was clicked",
+                        Toast.LENGTH_LONG).show()
+                R.id.reserve -> Toast.makeText(this, "Reserve was clicked",
+                        Toast.LENGTH_LONG).show()
             }
             true
         }

@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/home"
-        android:title="Home" />
 
-    <item
-        android:id="@+id/parks"
-        android:title="Parks" />
+    <group>
+        <item
+            android:id="@+id/parks"
+            android:title="Parks"
+            android:icon="@drawable/ic_baseline_home_24"/>
 
-    <item
-        android:id="@+id/activities"
-        android:title="Activities" />
+        <item
+            android:id="@+id/activities"
+            android:title="Activities"
+            android:icon="@drawable/ic_baseline_directions_bike_24"/>
 
-    <item
-        android:id="@+id/resources"
-        android:title="Resources" />
+        <item
+            android:id="@+id/resources"
+            android:title="Resources"
+            android:icon="@drawable/ic_lightbulb_24px"/>
 
-    <item
-        android:id="@+id/map"
-        android:title="Map" />
+        <item
+            android:id="@+id/map"
+            android:title="Map"
+            android:icon="@drawable/ic_baseline_map_24"/>
 
-    <item
-        android:id="@+id/reserve"
-        android:title="Reserve" />
+        <item
+            android:id="@+id/reserve"
+            android:title="Reserve"
+            android:icon="@drawable/ic_confirmation_number_24px"/>
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_baseline_share_24"
+                android:title="Share"/>
+
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_baseline_email_24"
+                android:title="Contact"/>
+
+        </menu>
+    </item>
 
 </menu>
