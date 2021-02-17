@@ -1,59 +1,51 @@
 package com.example.stateparks
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.navView)
+        val navController = findNavController(R.id.nav_host_fragment)
 
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.homeFragment, R.id.parksFragment, R.id.activitiesFragment, R.id.reserveFragment, R.id.mapFragment, R.id.reserveFragment
+        ), drawerLayout)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+    }
 
-        drawerLayout.addDrawerListener(toggle)
-
-        toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        // Listen for clicks on menu items
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.parks -> Toast.makeText(this, "Parks was clicked",
-                        Toast.LENGTH_LONG).show()
-                R.id.activities -> Toast.makeText(this, "Activities was clicked",
-                        Toast.LENGTH_LONG).show()
-                R.id.resources -> Toast.makeText(this, "Resources was clicked",
-                        Toast.LENGTH_LONG).show()
-                R.id.map -> Toast.makeText(this, "Map was clicked",
-                        Toast.LENGTH_LONG).show()
-                R.id.reserve -> Toast.makeText(this, "Reserve was clicked",
-                        Toast.LENGTH_LONG).show()
-            }
-            true
-        }
-
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)) {
-            return true
+        when(item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

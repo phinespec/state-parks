@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.stateparks.view.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/parksFragment"
+        android:name="com.example.stateparks.view.parks.ParksFragment"
+        android:label="ParksFragment" />
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="com.example.stateparks.view.activities.ActivitiesFragment"
+        android:label="ActivitiesFragment" />
+    <fragment
+        android:id="@+id/resourcesFragment"
+        android:name="com.example.stateparks.view.resources.ResourcesFragment"
+        android:label="ResourcesFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.stateparks.view.map.MapFragment"
+        android:label="MapFragment" />
+    <fragment
+        android:id="@+id/reserveFragment"
+        android:name="com.example.stateparks.view.reserve.ReserveFragment"
+        android:label="ReserveFragment" />
+</navigation>
