@@ -2,4 +2,51 @@
     <string name="app_name">stateParks</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string-array name="parks_array">
+        <item>Anasazi</item>
+        <item>Antelope Island</item>
+        <item>Bear Lake</item>
+        <item>Camp Floyd</item>
+        <item>Coral Pink</item>
+        <item>Dead Horse</item>
+        <item>Deer Creek</item>
+        <item>East Canyon</item>
+        <item>Echo</item>
+        <item>Edge of The Cedars</item>
+        <item>Escalante Petrified Forest</item>
+        <item>Flight Park</item>
+        <item>Fred Hayes at Starvation</item>
+        <item>Fremont Indian</item>
+        <item>Forntier Homestead</item>
+        <item>Goblin Valley</item>
+        <item>Goosenecks</item>
+        <item>Great Salt Lake</item>
+        <item>Green River</item>
+        <item>Gunlock</item>
+        <item>Heritage Park</item>
+        <item>Historic Union Pacific Rail Trail</item>
+        <item>Huntington</item>
+        <item>Hyrum</item>
+        <item>Jordan River</item>
+        <item>Jordanelle</item>
+        <item>Kodachrome Basin</item>
+        <item>Millsite</item>
+        <item>Otter Creek</item>
+        <item>Palisade</item>
+        <item>Piute</item>
+        <item>Quail Creek</item>
+        <item>Red Fleet</item>
+        <item>Rockport</item>
+        <item>Sand Hollow</item>
+        <item>Scofield</item>
+        <item>Snow Canyon</item>
+        <item>Steinaker</item>
+        <item>Territorial Statehouse</item>
+        <item>Utah Field House</item>
+        <item>Utah Lake</item>
+        <item>Wasatch Mountain</item>
+        <item>Willard Bay</item>
+        <item>Yuba</item>
+    </string-array>
 </resources>

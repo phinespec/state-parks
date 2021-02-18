@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
+import com.example.stateparks.adapters.ParksRecyclerAdapter
+import com.example.stateparks.data.ParksData
 import com.example.stateparks.databinding.FragmentParksBinding
 
 class ParksFragment : Fragment() {
@@ -17,6 +20,11 @@ class ParksFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         val binding: FragmentParksBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_parks, container, false)
+
+        val parksList = ParksData(requireContext()).getParksList()
+
+        val recyclerView: RecyclerView = binding.parksRecyclerView
+        recyclerView.adapter = ParksRecyclerAdapter(parksList)
 
         return binding.root
     }

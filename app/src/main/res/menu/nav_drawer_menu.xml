@@ -12,7 +12,7 @@
         <item
             android:id="@+id/parksFragment"
             android:title="Parks"
-            android:icon="@drawable/ic_baseline_home_24"/>
+            android:icon="@drawable/ic_baseline_house_siding_24"/>
 
         <item
             android:id="@+id/activitiesFragment"
