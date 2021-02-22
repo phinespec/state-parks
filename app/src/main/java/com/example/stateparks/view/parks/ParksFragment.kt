@@ -16,17 +16,31 @@ class ParksFragment : Fragment() {
 
 //    private lateinit var parksViewModel: ParksViewModel
 
+    private val parksList = mutableListOf<String>()
+    private val imageList = mutableListOf<Int>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding: FragmentParksBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_parks, container, false)
 
-        val parksList = ParksData(requireContext()).getParksList()
-
         val recyclerView: RecyclerView = binding.parksRecyclerView
-        recyclerView.adapter = ParksRecyclerAdapter(parksList)
+        recyclerView.adapter = ParksRecyclerAdapter(parksList, imageList)
+
+        postToList()
 
         return binding.root
+    }
+
+    private fun addToList(title: String, image: Int) {
+        parksList.add(title)
+        imageList.add(image)
+    }
+
+    private fun postToList() {
+        for (i in 1..25) {
+            addToList("Title $i", R.mipmap.ic_launcher_round)
+        }
     }
 
 }
