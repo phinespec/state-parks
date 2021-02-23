@@ -42,7 +42,7 @@ class ParksRecyclerAdapter(val parksList: List<String>, private var images: List
     }
 
     override fun onBindViewHolder(holder: ParksViewHolder, position: Int) {
-//        holder.bind(parksList[position])
+        holder.bind(parksList[position])
         holder.parksTextView.text = parksList[position]
         holder.parksImage.setImageResource(images[position])
     }
