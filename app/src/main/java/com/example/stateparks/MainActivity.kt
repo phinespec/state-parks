@@ -1,6 +1,8 @@
 package com.example.stateparks
 
 import android.os.Bundle
+import android.util.JsonReader
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +13,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.stateparks.data.Park
+import com.example.stateparks.data.ParksDatabase
+import com.example.stateparks.utilities.PARKS_DATA_FILENAME
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.coroutineScope
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +42,27 @@ class MainActivity : AppCompatActivity() {
         ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    suspend fun onFirstRun(): Result = coroutineScope {
+        try {
+            applicationContext.assets.open(PARKS_DATA_FILENAME).use { inputStream ->
+                JsonReader(inputStream.reader()).use { jsonReader ->
+                    val parksType = object : TypeToken<List<Park>>() {}.type
+                    val parksList: List<Park> = Gson().fromJson(jsonReader)
+
+                    val database = ParksDatabase.getInstance(applicationContext)
+                    database.parksDatabaseDao.insertAll(parksList)
+
+                    Result.success()
+                }
+            } catch (ex: Exception) {
+                Log.e(TAG, "Error seeding database", ex)
+                Result.failure()
+            }
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

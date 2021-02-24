@@ -6,58 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
 import com.example.stateparks.adapters.ParksRecyclerAdapter
+import com.example.stateparks.data.ParksDatabase
+import com.example.stateparks.data.ParksDatabaseDao
 import com.example.stateparks.databinding.FragmentParksBinding
+import java.io.InputStream
+import java.nio.channels.AsynchronousFileChannel.open
 
 class ParksFragment : Fragment() {
 
 //    private lateinit var parksViewModel: ParksViewModel
 
-    private val parksList = listOf<String>(
-        "Anasazi", "Antelope Island",
-        "Bear Lake", "Camp Floyd", "Coral Pink",
-        "Dead Horse",
-        "Deer Creek",
-        "East Canyon",
-        "Echo",
-        "Edge of The Cedars",
-        "Escalante Petrified Forest",
-        "Flight Park",
-        "Fred Hayes at Starvation",
-        "Fremont Indian",
-        "Forntier Homestead",
-        "Goblin Valley",
-        "Goosenecks",
-        "Great Salt Lake",
-        "Green River",
-        "Gunlock",
-        "Heritage Park",
-        "Historic Union Pacific Rail Trail",
-        "Huntington",
-        "Hyrum",
-        "Jordan River",
-        "Jordanelle",
-        "Kodachrome Basin",
-        "Millsite",
-        "Otter Creek",
-        "Palisade",
-        "Piute",
-        "Quail Creek",
-        "Red Fleet",
-        "Rockport",
-        "Sand Hollow",
-        "Scofield",
-        "Snow Canyon",
-        "Steinaker",
-        "Territorial Statehouse",
-        "Utah Field House",
-        "Utah Lake",
-        "Wasatch Mountain",
-        "Willard Bay",
-        "Yuba"
-    )
+
     private val imageList = mutableListOf<Int>()
 
     override fun onCreateView(
@@ -68,21 +32,20 @@ class ParksFragment : Fragment() {
             inflater, R.layout.fragment_parks, container, false
         )
 
+        val application = requireNotNull(this.activity).application
+        val dataSource = ParksDatabase.getInstance(application).parksDatabaseDao
+        val viewModelFactory = ParksViewModelFactory(dataSource, application)
+        val parksViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(ParksViewModel::class.java)
+
         val recyclerView: RecyclerView = binding.parksRecyclerView
-        recyclerView.adapter = ParksRecyclerAdapter(parksList, imageList)
+//        recyclerView.adapter = ParksRecyclerAdapter()
+
+        binding.parksViewModel = parksViewModel
+        binding.lifecycleOwner = this
 
         return binding.root
     }
-
-//    private fun addToList(title: String, image: Int) {
-//        parksList.add(title)
-//        imageList.add(image)
-//    }
-//
-//    private fun postToList() {
-//        for (i in 0 until parksList.size) {
-//            addToList(parksList[i], R.mipmap.ic_launcher_round)
-//        }
-//    }
 
 }
