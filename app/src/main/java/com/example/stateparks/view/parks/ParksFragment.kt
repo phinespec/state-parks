@@ -13,14 +13,17 @@ import com.example.stateparks.adapters.ParksRecyclerAdapter
 import com.example.stateparks.data.Park
 import com.example.stateparks.data.ParksDatabase
 import com.example.stateparks.databinding.FragmentParksBinding
+import com.example.stateparks.workers.SeedDatabaseWorker
+import com.google.gson.Gson
 
 class ParksFragment : Fragment() {
 
 //    private lateinit var parksViewModel: ParksViewModel
 
 
-    private val parksDummyData = listOf<Park>(Park(1, "Vernon Worthen", "Lovely little park", 583493.3, 0434.0),
-        Park(2, "Vernon Worthen2", "Lovely little park, ", 583493.3, 0434.0), Park(3, "Vernon Worthen3", "Lovely little park", 583493.3, 0434.0))
+
+//    private val parksDummyData = listOf<Park>(Park(1, "Vernon Worthen", "Lovely little park", 583493.3, 0434.0),
+//        Park(2, "Vernon Worthen2", "Lovely little park, ", 583493.3, 0434.0), Park(3, "Vernon Worthen3", "Lovely little park", 583493.3, 0434.0))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +32,7 @@ class ParksFragment : Fragment() {
         val binding: FragmentParksBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_parks, container, false
         )
+
 
         val application = requireNotNull(this.activity).application
         val dataSource = ParksDatabase.getInstance(application).parksDatabaseDao
@@ -40,7 +44,7 @@ class ParksFragment : Fragment() {
         val recyclerView: RecyclerView = binding.parksRecyclerView
 
         // here is where we hook up the adapter with our fragment and pass in our parksList
-        recyclerView.adapter = ParksRecyclerAdapter(requireContext(), parksDummyData)
+//        recyclerView.adapter = ParksRecyclerAdapter(requireContext(), )
 
         binding.parksViewModel = parksViewModel
         binding.lifecycleOwner = this

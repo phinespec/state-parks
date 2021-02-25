@@ -44,22 +44,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-//    suspend fun onFirstRun(): Result = coroutineScope {
-//            applicationContext.assets.open(PARKS_DATA_FILENAME).use { inputStream ->
-//                JsonReader(inputStream.reader()).use { jsonReader ->
-//                    val parksType = object : TypeToken<List<Park>>() {}.type
-//                    val parksList: List<Park> = Gson().fromJson(jsonReader)
-//
-//                    val database = ParksDatabase.getInstance(applicationContext)
-//                    database.parksDatabaseDao.insertAll(parksList)
-//
-//                    Result.success()
-//                }
-//
-//        }
-//
-//
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
