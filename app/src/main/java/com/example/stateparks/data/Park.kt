@@ -8,10 +8,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "state_parks_table")
 data class Park (
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    val parkId: Int,
 
     @ColumnInfo(name = "parkName")
-    val name: String,
+    val parkName: String,
 
     @ColumnInfo(name = "description")
     val remarks: String,

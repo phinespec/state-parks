@@ -13,36 +13,18 @@ import androidx.work.WorkManager
 import com.example.stateparks.utilities.DATABASE_NAME
 import com.example.stateparks.workers.SeedDatabaseWorker
 
-@Database(entities = [Park::class], version = 1, exportSchema = false)
+@Database(entities = [Park::class, Dummy::class], version = 1, exportSchema = false)
 abstract class ParksDatabase : RoomDatabase() {
 
     abstract val parksDatabaseDao: ParksDatabaseDao
+    abstract val dummyDatabasaeDao: DummyDatabaseDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: ParksDatabase? = null
-
-//        fun getInstance(context: Context): ParksDatabase {
-//            return instance ?: synchronized(this) {
-//                instance ?: buildDatabase(context).also { instance = it }
-//            }
-//        }
+        @Volatile private var instance: ParksDatabase? = null
 
         fun getInstance(context: Context): ParksDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-
-                if(instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        ParksDatabase::class.java,
-                        "state_parks_database")
-                        .fallbackToDestructiveMigration()
-                        .build()
-                    INSTANCE = instance
-                }
-
-                return instance
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also { instance = it }
             }
         }
 

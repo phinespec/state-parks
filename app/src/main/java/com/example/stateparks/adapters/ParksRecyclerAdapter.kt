@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
 import com.example.stateparks.data.Park
@@ -42,9 +43,9 @@ class ParksRecyclerAdapter(val context: Context, val parksList: List<Park>) :
 
     override fun onBindViewHolder(holder: ParksViewHolder, position: Int) {
 
-        val park = parksList[position]
+        val park = parksList.get(position)
 
-        holder.tvParkTitle.text = park.name
-        holder.tvParkDescription.text = park.remarks
+        holder.tvParkTitle.text = park?.parkName
+        holder.tvParkDescription.text = park?.remarks
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
@@ -33,7 +34,6 @@ class ParksFragment : Fragment() {
             inflater, R.layout.fragment_parks, container, false
         )
 
-
         val application = requireNotNull(this.activity).application
         val dataSource = ParksDatabase.getInstance(application).parksDatabaseDao
         val viewModelFactory = ParksViewModelFactory(dataSource, application)
@@ -41,10 +41,16 @@ class ParksFragment : Fragment() {
             ViewModelProviders.of(
                 this, viewModelFactory).get(ParksViewModel::class.java)
 
+        val parks = parksViewModel.database.getAllParks()
+
         val recyclerView: RecyclerView = binding.parksRecyclerView
 
+        parks.observe(viewLifecycleOwner, Observer { parksList ->
+            recyclerView.adapter = ParksRecyclerAdapter(requireContext(), parksList)
+        })
+
         // here is where we hook up the adapter with our fragment and pass in our parksList
-//        recyclerView.adapter = ParksRecyclerAdapter(requireContext(), )
+
 
         binding.parksViewModel = parksViewModel
         binding.lifecycleOwner = this

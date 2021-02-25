@@ -12,10 +12,10 @@ interface ParksDatabaseDao {
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun insertAll(parks: List<Park>)
 
-        @Query("SELECT * FROM state_parks_table WHERE id = :key")
+        @Query("SELECT * FROM state_parks_table WHERE parkId = :key")
         suspend fun get(key: Long): Park?
 
-        @Query("SELECT * FROM state_parks_table ORDER BY id DESC")
+        @Query("SELECT * FROM state_parks_table")
         fun getAllParks(): LiveData<List<Park>>
 }
 

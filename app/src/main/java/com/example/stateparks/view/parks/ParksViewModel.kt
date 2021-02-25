@@ -8,4 +8,6 @@ class ParksViewModel(
     val database: ParksDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
+
+    val parks = database.getAllParks()
 }
