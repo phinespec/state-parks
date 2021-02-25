@@ -1,20 +1,22 @@
 package com.example.stateparks.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
+import com.example.stateparks.data.Park
+import kotlinx.android.synthetic.main.parks_item.view.*
 
-class ParksRecyclerAdapter(val parksList: List<String>, private var images: List<Int>) :
+class ParksRecyclerAdapter(val context: Context, val parksList: List<Park>) :
         RecyclerView.Adapter<ParksRecyclerAdapter.ParksViewHolder>() {
 
     inner class ParksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val parksTextView: TextView = itemView.findViewById(R.id.parks_text)
-        val parksImage: ImageView = itemView.findViewById(R.id.iv_image)
+        val tvParkTitle: TextView = itemView.park_title
+        val tvParkDescription: TextView = itemView.park_description
 
 
         init {
@@ -25,9 +27,6 @@ class ParksRecyclerAdapter(val parksList: List<String>, private var images: List
             }
         }
 
-        fun bind(parkName: String) {
-            parksTextView.text = parkName
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParksViewHolder {
@@ -42,8 +41,10 @@ class ParksRecyclerAdapter(val parksList: List<String>, private var images: List
     }
 
     override fun onBindViewHolder(holder: ParksViewHolder, position: Int) {
-        holder.bind(parksList[position])
-        holder.parksTextView.text = parksList[position]
-        holder.parksImage.setImageResource(images[position])
+
+        val park = parksList[position]
+
+        holder.tvParkTitle.text = park.name
+        holder.tvParkDescription.text = park.remarks
     }
 }

@@ -6,23 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stateparks.R
 import com.example.stateparks.adapters.ParksRecyclerAdapter
+import com.example.stateparks.data.Park
 import com.example.stateparks.data.ParksDatabase
-import com.example.stateparks.data.ParksDatabaseDao
 import com.example.stateparks.databinding.FragmentParksBinding
-import java.io.InputStream
-import java.nio.channels.AsynchronousFileChannel.open
 
 class ParksFragment : Fragment() {
 
 //    private lateinit var parksViewModel: ParksViewModel
 
 
-    private val imageList = mutableListOf<Int>()
+    private val parksDummyData = listOf<Park>(Park(1, "Vernon Worthen", "Lovely little park", 583493.3, 0434.0),
+        Park(2, "Vernon Worthen2", "Lovely little park, ", 583493.3, 0434.0), Park(3, "Vernon Worthen3", "Lovely little park", 583493.3, 0434.0))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +38,9 @@ class ParksFragment : Fragment() {
                 this, viewModelFactory).get(ParksViewModel::class.java)
 
         val recyclerView: RecyclerView = binding.parksRecyclerView
-//        recyclerView.adapter = ParksRecyclerAdapter()
+
+        // here is where we hook up the adapter with our fragment and pass in our parksList
+        recyclerView.adapter = ParksRecyclerAdapter(requireContext(), parksDummyData)
 
         binding.parksViewModel = parksViewModel
         binding.lifecycleOwner = this

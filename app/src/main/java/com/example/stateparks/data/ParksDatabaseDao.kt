@@ -6,10 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
+@Dao
 interface ParksDatabaseDao {
-
-    @Dao
-    interface ParksDatabaseDao {
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun insertAll(parks: List<Park>)
@@ -19,7 +17,5 @@ interface ParksDatabaseDao {
 
         @Query("SELECT * FROM state_parks_table ORDER BY id DESC")
         fun getAllParks(): LiveData<List<Park>>
-    }
-
-
 }
+
