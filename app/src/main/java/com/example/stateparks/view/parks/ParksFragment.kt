@@ -19,13 +19,6 @@ import com.google.gson.Gson
 
 class ParksFragment : Fragment() {
 
-//    private lateinit var parksViewModel: ParksViewModel
-
-
-
-//    private val parksDummyData = listOf<Park>(Park(1, "Vernon Worthen", "Lovely little park", 583493.3, 0434.0),
-//        Park(2, "Vernon Worthen2", "Lovely little park, ", 583493.3, 0434.0), Park(3, "Vernon Worthen3", "Lovely little park", 583493.3, 0434.0))
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,10 +42,9 @@ class ParksFragment : Fragment() {
             recyclerView.adapter = ParksRecyclerAdapter(requireContext(), parksList)
         })
 
-        // here is where we hook up the adapter with our fragment and pass in our parksList
-
 
         binding.parksViewModel = parksViewModel
+        binding.parksRecyclerView
         binding.lifecycleOwner = this
 
         return binding.root

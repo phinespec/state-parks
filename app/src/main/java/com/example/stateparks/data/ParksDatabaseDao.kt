@@ -13,7 +13,7 @@ interface ParksDatabaseDao {
         suspend fun insertAll(parks: List<Park>)
 
         @Query("SELECT * FROM state_parks_table WHERE parkId = :key")
-        suspend fun get(key: Long): Park?
+        fun get(key: Long): Park?
 
         @Query("SELECT * FROM state_parks_table")
         fun getAllParks(): LiveData<List<Park>>

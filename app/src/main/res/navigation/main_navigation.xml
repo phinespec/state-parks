@@ -12,7 +12,11 @@
     <fragment
         android:id="@+id/parksFragment"
         android:name="com.example.stateparks.view.parks.ParksFragment"
-        android:label="ParksFragment" />
+        android:label="ParksFragment" >
+        <action
+            android:id="@+id/action_parksFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="com.example.stateparks.view.activities.ActivitiesFragment"
@@ -24,7 +28,11 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.stateparks.view.map.MapFragment"
-        android:label="MapFragment" />
+        android:label="MapFragment" >
+        <argument
+            android:name="StateParkKey"
+            app:argType="com.example.stateparks.data.Park" />
+    </fragment>
     <fragment
         android:id="@+id/reserveFragment"
         android:name="com.example.stateparks.view.reserve.ReserveFragment"

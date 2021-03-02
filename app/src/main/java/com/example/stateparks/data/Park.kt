@@ -1,14 +1,17 @@
 package com.example.stateparks.data
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "state_parks_table")
 data class Park (
     @PrimaryKey(autoGenerate = true)
-    val parkId: Int,
+    val parkId: Long,
 
     @ColumnInfo(name = "parkName")
     val parkName: String,
@@ -21,7 +24,7 @@ data class Park (
 
     @ColumnInfo(name = "longitude")
     val longitude: Double
-    )
+    ):Parcelable
 
 
 /**

@@ -3,16 +3,23 @@ package com.example.stateparks.view.map
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.stateparks.R
+import com.example.stateparks.data.ParksDatabase
 
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MapFragment : Fragment() {
 
@@ -26,9 +33,23 @@ class MapFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        // Safe args
+        val args: MapFragmentArgs by navArgs()
+        val park = args.stateParkKey
+        val application = requireNotNull(this.activity).application
+        val dataSource = ParksDatabase.getInstance(application).parksDatabaseDao
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val zoomAmount: Float = 15.0F
+
+            val target = park?.latitude?.let { LatLng(it, park?.longitude * -1) }
+            googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            googleMap.addMarker(target?.let { MarkerOptions().position(it).title(park?.parkName) })
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(target))
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomAmount))
+        }
+
     }
 
     override fun onCreateView(
@@ -36,6 +57,9 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
