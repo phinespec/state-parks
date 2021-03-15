@@ -44,7 +44,7 @@ class MapFragment : Fragment() {
             val zoomAmount: Float = 15.0F
 
             val target = park?.latitude?.let { LatLng(it, park?.longitude * -1) }
-            googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            //googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
             googleMap.addMarker(target?.let { MarkerOptions().position(it).title(park?.parkName) })
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(target))
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomAmount))

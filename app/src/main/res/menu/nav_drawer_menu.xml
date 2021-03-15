@@ -25,11 +25,6 @@
             android:icon="@drawable/ic_lightbulb_24px"/>
 
         <item
-            android:id="@+id/mapFragment"
-            android:title="Map"
-            android:icon="@drawable/ic_baseline_map_24"/>
-
-        <item
             android:id="@+id/reserveFragment"
             android:title="Reserve"
             android:icon="@drawable/ic_confirmation_number_24px"/>
