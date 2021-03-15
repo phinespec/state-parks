@@ -38,7 +38,7 @@
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_launcher"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,6 +63,15 @@
             android:layout_marginStart="10dp"
             android:text="@{park.remarks}"
             android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/map_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColorLink="@color/common_google_signin_btn_text_light_default"
+                android:text="Click to view map"
+                android:textSize="10sp" />
 
 
         </LinearLayout>

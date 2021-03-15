@@ -8,7 +8,7 @@ buildscript {
         gradleVersion = '4.1.1'
         navigationVersion = '1.0.0'
         gsonVersion = '2.8.6'
-        workVersion = '2.1.0'
+        workVersion = '2.5.0'
         dataBindingCompilerVersion = gradleVersion
     }
 
