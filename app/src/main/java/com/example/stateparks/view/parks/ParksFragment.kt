@@ -44,7 +44,6 @@ class ParksFragment : Fragment() {
 
 
         binding.parksViewModel = parksViewModel
-        binding.parksRecyclerView
         binding.lifecycleOwner = this
 
         return binding.root

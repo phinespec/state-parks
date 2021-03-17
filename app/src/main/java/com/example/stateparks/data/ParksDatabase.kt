@@ -13,11 +13,12 @@ import androidx.work.WorkManager
 import com.example.stateparks.utilities.DATABASE_NAME
 import com.example.stateparks.workers.SeedDatabaseWorker
 
-@Database(entities = [Park::class, Dummy::class], version = 1, exportSchema = false)
+@Database(entities = [Park::class, Dummy::class, Activity::class], version = 1, exportSchema = false)
 abstract class ParksDatabase : RoomDatabase() {
 
     abstract val parksDatabaseDao: ParksDatabaseDao
-    abstract val dummyDatabasaeDao: DummyDatabaseDao
+    abstract val dummyDatabaseDao: DummyDatabaseDao
+    abstract val activitiesDatabaseDao: ActivitiesDatabaseDao
 
     companion object {
         @Volatile private var instance: ParksDatabase? = null

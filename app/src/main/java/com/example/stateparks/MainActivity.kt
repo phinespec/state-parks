@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         val dummy = Dummy(1, "tom")
         lifecycleScope.launch{
-            db.dummyDatabasaeDao.insert(dummy)
+            db.dummyDatabaseDao.insert(dummy)
         }
 
     }
