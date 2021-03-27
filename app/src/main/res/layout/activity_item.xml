@@ -15,10 +15,10 @@
     android:layout_width="120dp"
     android:layout_height="wrap_content"
     android:layout_marginVertical="10dp"
-    android:background="@color/purple_500"
+    android:background="@color/mauve_taupe"
     android:onClick="@{() -> clickListener.onClick()}"
-    app:cardCornerRadius=".1dp"
-    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
@@ -44,18 +44,20 @@
 
         <TextView
             android:id="@+id/itemText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemImage"
             android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-black"
             android:text="Some Filler"
+            android:textAlignment="center"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/desert_sand"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemImage"
-            android:textAlignment="center" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemImage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.stateparks.view.home.HomeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home_layout"
         android:layout_width="match_parent"
@@ -11,21 +17,68 @@
         tools:context=".view.home.HomeFragment">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:alpha="1"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/canyonlands"/>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="130dp"
-            android:layout_height="114dp"
-            android:paddingStart="10sp"
-            android:paddingTop="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/utah_dnr_logo" />
+            app:srcCompat="@drawable/gunlock">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/remaining_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:alpha="1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="State Parks"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/desert_sand"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/utah_title" />
+
+        <TextView
+            android:id="@+id/utah_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="170dp"
+            android:alpha="@dimen/material_emphasis_high_type"
+            android:fontFamily="@font/dirty_bandit"
+            android:text="Utah"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/middle_blue_green"
+            android:textSize="120sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/background" />
+
+        <TextView
+            android:id="@+id/sub_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:alpha="@dimen/material_emphasis_medium"
+            android:fontFamily="@font/audiowide"
+            android:text="Home of The Monolith"
+            android:textColor="@color/design_default_color_background"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remaining_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
