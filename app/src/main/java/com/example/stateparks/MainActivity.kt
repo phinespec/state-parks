@@ -2,13 +2,16 @@ package com.example.stateparks
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Layout
 import android.util.JsonReader
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,15 +22,20 @@ import com.example.stateparks.data.Dummy
 import com.example.stateparks.data.Park
 import com.example.stateparks.data.ParksDatabase
 import com.example.stateparks.utilities.PARKS_DATA_FILENAME
+import com.example.stateparks.view.activities.ActivitiesFragment
+import com.example.stateparks.view.home.HomeFragment
+import com.example.stateparks.view.parks.ParksFragment
+import com.example.stateparks.view.reserve.ReserveFragment
+import com.example.stateparks.view.resources.ResourcesFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,19 +43,25 @@ class MainActivity : AppCompatActivity() {
 
         checkFirstRun()
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        val home = HomeFragment()
+        val parks = ParksFragment()
+        val activities = ActivitiesFragment()
+        val resources = ResourcesFragment()
+        val reserve = ReserveFragment()
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.navView)
-        val navController = findNavController(R.id.nav_host_fragment)
+        makeCurrentFragment(home)
 
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.homeFragment, R.id.parksFragment, R.id.activitiesFragment,
-            R.id.reserveFragment, R.id.reserveFragment,
-        ), drawerLayout)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeFragment -> makeCurrentFragment(home)
+                R.id.parksFragment -> makeCurrentFragment(parks)
+                R.id.activitiesFragment -> makeCurrentFragment(activities)
+                R.id.reserveFragment -> makeCurrentFragment(reserve)
+                R.id.resourcesFragment -> makeCurrentFragment(resources)
+            }
+            true
+        }
+
     }
 
     fun checkFirstRun() {
@@ -62,6 +76,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment, fragment)
+            commit()
+        }
+
     fun forceDatabaseInit() {
         val db = ParksDatabase.getInstance(this)
 
@@ -70,17 +90,6 @@ class MainActivity : AppCompatActivity() {
             db.dummyDatabaseDao.insert(dummy)
         }
 
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
 

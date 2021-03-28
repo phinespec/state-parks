@@ -37,4 +37,5 @@
         android:id="@+id/reserveFragment"
         android:name="com.example.stateparks.view.reserve.ReserveFragment"
         android:label="ReserveFragment" />
+    <action android:id="@+id/action_global_mapFragment" app:destination="@id/mapFragment"/>
 </navigation>

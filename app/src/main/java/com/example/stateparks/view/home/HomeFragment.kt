@@ -1,10 +1,12 @@
 package com.example.stateparks.view.home
 
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.stateparks.R
@@ -20,6 +22,10 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false)
 
+        fadeInText()
+
+
+
         return binding.root
     }
 
@@ -27,5 +33,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = binding.viewModel
         viewModel?.fadeInText(binding.subHeading)
+    }
+
+    fun fadeInText() {
+        val bottomText = binding.subHeading
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        bottomText.startAnimation(animation)
     }
 }

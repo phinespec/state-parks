@@ -21,7 +21,6 @@
         android:layout_margin="4dp"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="@drawable/gunlock"
         android:onClick="@{() -> clickListener.onClick(park)}"
         app:cardBackgroundColor="@color/middle_blue_green"
         app:cardCornerRadius="10dp"
@@ -43,7 +42,7 @@
                 android:layout_centerVertical="true"
                 android:src="@color/desert_sand"
                 tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="20dp"></ImageView>
+                tools:layout_editor_absoluteY="20dp"/>
 
             <TextView
                 android:id="@+id/park_title"

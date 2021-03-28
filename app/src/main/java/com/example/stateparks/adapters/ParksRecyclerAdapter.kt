@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stateparks.MainNavigationDirections
 import com.example.stateparks.R
 import com.example.stateparks.data.Park
 import com.example.stateparks.data.ParksDatabase
@@ -28,13 +32,13 @@ class ParksRecyclerAdapter(val context: Context, val parksList: List<Park>) :
         val tvParkTitle: TextView = itemView.park_title
         val tvParkDescription: TextView = itemView.park_description
 
-
         init {
             itemView.setOnClickListener { v: View ->
                 val position: Int = adapterPosition
                 val park = parksList[position]
-                v.findNavController().navigate(
-                ParksFragmentDirections.actionParksFragmentToMapFragment(park))
+
+                v.findNavController().navigate(MainNavigationDirections.actionGlobalMapFragment(park))
+
             }
         }
 
@@ -53,10 +57,10 @@ class ParksRecyclerAdapter(val context: Context, val parksList: List<Park>) :
 
     override fun onBindViewHolder(holder: ParksViewHolder, position: Int) {
 
-        val park = parksList.get(position)
+        val park = parksList[position]
 
-        holder.tvParkTitle.text = park?.parkName
-        holder.tvParkDescription.text = park?.remarks
+        holder.tvParkTitle.text = park.parkName
+        holder.tvParkDescription.text = park.remarks
     }
 }
 

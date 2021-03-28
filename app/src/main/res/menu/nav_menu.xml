@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
 
 
-    <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/homeFragment"
             android:title="Home"
@@ -12,7 +12,7 @@
         <item
             android:id="@+id/parksFragment"
             android:title="Parks"
-            android:icon="@drawable/ic_baseline_house_siding_24"/>
+            android:icon="@drawable/ic_baseline_map_24"/>
 
         <item
             android:id="@+id/activitiesFragment"
@@ -28,21 +28,6 @@
             android:id="@+id/reserveFragment"
             android:title="Reserve"
             android:icon="@drawable/ic_confirmation_number_24px"/>
-    </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_baseline_share_24"
-                android:title="Share"/>
-
-            <item
-                android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_baseline_email_24"
-                android:title="Contact"/>
-
-        </menu>
-    </item>
 
 </menu>
